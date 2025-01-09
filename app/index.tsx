@@ -2,11 +2,12 @@ import React from 'react';
 import { ImageBackground, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Link } from "expo-router";
 
 // Assuming you've moved main.jpg to the assets folder in your Expo project
-const Main = require('../../assets/images/main.jpg');
+const Main = require('../assets/images/main.jpg');
 
-export default function Course() {
+export default function Home() {
   const navigation = useNavigation();
 
   return (
@@ -17,10 +18,14 @@ export default function Course() {
     >
       <View style={styles.overlay}>
         <View style={styles.contentContainer}>
-          <Text style={styles.heading}>Courses</Text>
-          <Text style={styles.subheading}>How to grow crops?</Text>
+          <Text style={styles.heading}>के तपाईं कृषिमा रुचि राख्नुहुन्छ?</Text>
+          <Text style={styles.subheading}>यदि तपाइँ इच्छुक हुनुहुन्छ भने</Text>
         </View>
-        
+        <Link  style={styles.button}
+          href={'/market'}
+          >
+          <Text style={styles.buttonText}>यो लिङ्क क्लिक गर्नुहोस्</Text>
+        </Link>
       </View>
     </ImageBackground>
   );
@@ -33,9 +38,9 @@ const styles = StyleSheet.create({
   },
   overlay: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(0,0,0,0.6)',
     alignItems: 'center',
-    paddingTop:60,
+    justifyContent: 'center',
   },
   contentContainer: {
     alignItems: 'center',
@@ -44,13 +49,13 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: 'black',
+    color: 'white',
     textAlign: 'center',
     marginVertical: 8,
   },
   subheading: {
     fontSize: 20,
-    color: 'black',
+    color: 'white',
     textAlign: 'center',
     marginVertical: 8,
   },

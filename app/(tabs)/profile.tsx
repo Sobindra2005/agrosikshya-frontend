@@ -6,7 +6,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 // Assuming you've moved main.jpg to the assets folder in your Expo project
 const Main = require('../../assets/images/main.jpg');
 
-export default function Course() {
+export default function Profile() {
   const navigation = useNavigation();
 
   return (
@@ -17,7 +17,7 @@ export default function Course() {
     >
       <View style={styles.overlay}>
         <View style={styles.contentContainer}>
-          <Text style={styles.heading}>Courses</Text>
+          <Text style={styles.heading}>Profile</Text>
           <Text style={styles.subheading}>How to grow crops?</Text>
         </View>
         
