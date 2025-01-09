@@ -2,46 +2,31 @@ import React from 'react';
 import { ImageBackground, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Link } from "expo-router";
 
 // Assuming you've moved main.jpg to the assets folder in your Expo project
 const Main = require('../../assets/images/main.jpg');
 
-export default function Home() {
+export default function Diary() {
   const navigation = useNavigation();
 
   return (
-    <ImageBackground 
-      source={Main}
-      style={styles.backgroundImage}
-      resizeMode="cover"
-    >
-      <View style={styles.overlay}>
+    <View style={styles.container}>
         <View style={styles.contentContainer}>
-          <Text style={styles.heading}>के तपाईं कृषिमा रुचि राख्नुहुन्छ?</Text>
-          <Text style={styles.subheading}>यदि तपाइँ इच्छुक हुनुहुन्छ भने</Text>
-        </View>
-        <Link  style={styles.button}
-          href={'/market'}
-          >
-          <Text style={styles.buttonText}>यो लिङ्क क्लिक गर्नुहोस्</Text>
-        </Link>
+          <Text style={styles.heading}>Business Diary</Text>
+          <Text style={styles.subheading}>Incomes and Expenses</Text>        
       </View>
-    </ImageBackground>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
+  container: {
+    backgroundColor: 'white', 
+    flex:1,
     width: '100%',
+    paddingTop: 60,
   },
-  overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+
   contentContainer: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -49,13 +34,13 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: 'white',
+    color: 'black',
     textAlign: 'center',
     marginVertical: 8,
   },
   subheading: {
     fontSize: 20,
-    color: 'white',
+    color: 'black',
     textAlign: 'center',
     marginVertical: 8,
   },
