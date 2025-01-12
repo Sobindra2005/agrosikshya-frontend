@@ -18,7 +18,7 @@ export default function Home() {
     >
       <View style={styles.overlay}>
         <View style={styles.contentContainer}>
-          <Text style={styles.heading}>के तपाईं कृषिमा रुचि राख्नुहुन्छ?</Text>
+          <Text className=' text-3xl text-white border border-white  '>hello </Text>
           <Text style={styles.subheading}>यदि तपाइँ इच्छुक हुनुहुन्छ भने</Text>
         </View>
         <Link  style={styles.button}
