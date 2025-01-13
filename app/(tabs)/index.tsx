@@ -19,6 +19,7 @@ export default function Course() {
         <View style={styles.contentContainer}>
           <Text style={styles.heading}>Courses</Text>
           <Text style={styles.subheading}>How to grow crops?</Text>
+          <Text className='text-red-600 bg-slate-400'>This is a text of Nativewind</Text>
         </View>
         
       </View>
