@@ -1,63 +1,36 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+
+type LanguageContent ={
+  lang: 'Nepali' | 'English',
+  name: string,
+  description: string,
+};
+ const languageOptions : LanguageContent[]=[
+  {
+    lang:"Nepali",
+    name:"बजार प्रवृत्ति",
+    description:"स्थान आधारित बजार प्रवृत्ति"
+  },
+  {
+    lang:"English",
+    name:"Market Trends",
+    description:"Location based market trend"
+  }
+ ]
+ const currentLangauge="Nepali";
 
 export default function Market() {
-  const navigation = useNavigation();
-
+ const content = languageOptions.find(Option => Option.lang === currentLangauge) ?? languageOptions[0]
   return (
-    <View style={styles.container}>
-      <View style={styles.contentContainer}>
-        <Text style={styles.heading}>Market Trends</Text>
-        <Text style={styles.subheading}>Location based market trend</Text>
+    <View className='flex-1 bg-gray-100 m-2 '>
+      <View className='bg-white p-4 justify-center rounded-lg shadow-md items-center text-center' >
+        <Text className='text-3xl'>{content.name}</Text>
+      </View>
+      <View className='m-2'>
+        <Text className='text-2xl'>{content.description}</Text>
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    width: '100%',
-  },
-  contentContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 60,
-  },
-  heading: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: 'black',
-    textAlign: 'center',
-    marginVertical: 8,
-  },
-  subheading: {
-    fontSize: 20,
-    color: 'black',
-    textAlign: 'center',
-    marginVertical: 8,
-  },
-  button: {
-    backgroundColor: '#63cd15',
-    padding: 8,
-    borderRadius: 12,
-    width: 224,
-    marginTop: 16,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  buttonText: {
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 16,
-  },
-});

@@ -1,82 +1,53 @@
 import React from 'react';
-import { ImageBackground, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Link } from "expo-router";
+import { ImageBackground, View, Text, TouchableOpacity } from 'react-native';
+import {  router } from "expo-router";
 
-// Assuming you've moved main.jpg to the assets folder in your Expo project
-const Main = require('../assets/images/main.jpg');
+type LanguageContent = {
+  lang: 'Nepali' | 'English';
+  name: string;
+  description: string;
+};
+
+const languageOptions: LanguageContent[] = [
+  {
+    lang: 'Nepali',
+    name: 'यदि तपाइँ इच्छुक हुनुहुन्छ भने',
+    description: 'यो लिङ्क क्लिक गर्नुहोस्'
+  },
+  {
+    lang: 'English',
+    name: 'If you are interested',
+    description: 'Click this link'
+  }
+];
+
+const currentLanguage = 'Nepali'; // This should come from your language state management
 
 export default function Home() {
-  const navigation = useNavigation();
+  const content = languageOptions.find(option => option.lang === currentLanguage) ?? languageOptions[0];
 
   return (
     <ImageBackground 
-      source={Main}
-      style={styles.backgroundImage}
+      source={require('../assets/images/main.jpg')}
+      className="flex-1 w-full"
       resizeMode="cover"
     >
-      <View style={styles.overlay}>
-        <View style={styles.contentContainer}>
-          <Text className=' text-3xl text-white border border-white  '>hello </Text>
-          <Text style={styles.subheading}>यदि तपाइँ इच्छुक हुनुहुन्छ भने</Text>
+      <View className="flex-1 bg-black/60 items-center justify-center">
+        <View className="items-center justify-center">
+          <Text className="text-xl text-white text-center my-2">
+            {content.name}
+          </Text> 
         </View>
-        <Link  style={styles.button}
-          href={'/market'}
-          >
-          <Text style={styles.buttonText}>यो लिङ्क क्लिक गर्नुहोस्</Text>
-        </Link>
+        
+        <TouchableOpacity
+          onPress={() => router.push("/(tabs)/profile")}
+          className="bg-[#63cd15] px-4 py-2 rounded-xl w-56 mt-4 shadow-md"
+        >
+          <Text className="text-white text-center text-base">
+            {content.description}
+          </Text>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
 }
-
-const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    width: '100%',
-  },
-  overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  contentContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  heading: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: 'white',
-    textAlign: 'center',
-    marginVertical: 8,
-  },
-  subheading: {
-    fontSize: 20,
-    color: 'white',
-    textAlign: 'center',
-    marginVertical: 8,
-  },
-  button: {
-    backgroundColor: '#63cd15', 
-    padding: 8,
-    borderRadius: 12,
-    width: 224,
-    marginTop: 16,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  buttonText: {
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 16,
-  },
-});

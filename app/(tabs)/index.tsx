@@ -1,78 +1,45 @@
 import React from 'react';
-import { ImageBackground, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { View, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-// Assuming you've moved main.jpg to the assets folder in your Expo project
-const Main = require('../../assets/images/main.jpg');
+type LanguageContent ={
+  lang: 'Nepali' | 'English';
+  name: string;
+  animaldescription: string;
+  plantdescription: string;
+}
+const langaugeOptions : LanguageContent[] =[
+{
+  lang:"Nepali",
+  name:"पाठ्यक्रमहरू",
+  animaldescription:"कसरी पशुपालन गर्ने ?",
+  plantdescription:"बिरुवा कसरी बढ्ने ?",
+ },
+{
+  lang:"English",
+  name:"Courses",
+  animaldescription:"How to rear animals?",
+  plantdescription:"How to grow crops?",
+ },
+];
 
+const currentLanguage = 'Nepali';
 export default function Course() {
-  const navigation = useNavigation();
-
+ const content = langaugeOptions.find(option => option.lang === currentLanguage) ?? langaugeOptions[0];
   return (
-    <ImageBackground 
-      source={Main}
-      style={styles.backgroundImage}
-      resizeMode="cover"
-    >
-      <View style={styles.overlay}>
-        <View style={styles.contentContainer}>
-          <Text style={styles.heading}>Courses</Text>
-          <Text style={styles.subheading}>How to grow crops?</Text>
-          <Text className='text-red-600 bg-slate-400'>This is a text of Nativewind</Text>
+  
+      <SafeAreaView  className='flex-1 bg-gray-100 m-2 '>
+        <View className='bg-white  p-4 justify-center rounded-lg shadow-md items-center text-center' >
+          <Text className='text-3xl font-bold mb-2'>{content.name}</Text>
+        </View>  
+        <View className='justify-start p-4'>
+          <Text className='text-2xl'>{content.animaldescription}</Text>
         </View>
-        
-      </View>
-    </ImageBackground>
+        <View className='justify-start p-4'>
+          <Text className='text-2xl'>{content.plantdescription}</Text>
+        </View>
+      </SafeAreaView>
+ 
   );
 }
 
-const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    width: '100%',
-  },
-  overlay: {
-    flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    paddingTop:60,
-  },
-  contentContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  heading: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: 'black',
-    textAlign: 'center',
-    marginVertical: 8,
-  },
-  subheading: {
-    fontSize: 20,
-    color: 'black',
-    textAlign: 'center',
-    marginVertical: 8,
-  },
-  button: {
-    backgroundColor: '#63cd15', 
-    padding: 8,
-    borderRadius: 12,
-    width: 224,
-    marginTop: 16,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  buttonText: {
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 16,
-  },
-});
